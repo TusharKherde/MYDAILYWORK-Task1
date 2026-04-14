@@ -1,7 +1,6 @@
 // Smooth Scroll Navigation
 const navLinks = document.querySelectorAll(".nav-link")
-const menuToggle = document.getElementById("menuToggle")
-const navLinksContainer = document.getElementById("navLinks")
+const navLinksContainer = document.querySelector(".navbar-collapse")
 
 // Update active nav link on scroll
 window.addEventListener("scroll", () => {
@@ -34,44 +33,13 @@ navLinks.forEach((link) => {
     const targetSection = document.querySelector(targetId)
 
     if (targetSection) {
-      navLinksContainer.classList.remove("active")
+      navLinksContainer.classList.remove("show") // Bootstrap collapse
       targetSection.scrollIntoView({ behavior: "smooth" })
     }
   })
 })
 
-// Mobile menu toggle
-menuToggle.addEventListener("click", () => {
-  navLinksContainer.classList.toggle("active")
-})
-
-// Close mobile menu when clicking on a link
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinksContainer.classList.remove("active")
-  })
-})
-
-// Scroll animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -100px 0px",
-}
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible")
-    }
-  })
-}, observerOptions)
-
-// Observe all elements with fade-in class
-const fadeElements = document.querySelectorAll(".skill-card, .project-card")
-fadeElements.forEach((el) => {
-  el.classList.add("fade-in")
-  observer.observe(el)
-})
+// Scroll animations removed as using pure Bootstrap
 
 // Contact Form Validation
 const contactForm = document.getElementById("contactForm")
